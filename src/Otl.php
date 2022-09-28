@@ -2,15 +2,11 @@
 
 namespace Mpdf;
 
-use Mpdf\Strict;
-
 use Mpdf\Css\TextVars;
 use Mpdf\Fonts\FontCache;
-
 use Mpdf\Shaper\Indic;
 use Mpdf\Shaper\Myanmar;
 use Mpdf\Shaper\Sea;
-
 use Mpdf\Utils\UtfString;
 
 class Otl
@@ -5642,7 +5638,8 @@ class Otl
 			$onlevel = false;
 			for ($i = 0; $i < $numchars; ++$i) {
 
-				if ($bidiData[$i]['level'] >= $j) {
+//				if ($bidiData[$i]['level'] >= $j) {
+                if (isset($bidiData[$i]['level']) && $bidiData[$i]['level'] >= $j) {
 					$onlevel = true;
 					// L4. A character is depicted by a mirrored glyph if and only if (a) the resolved directionality of that character is R, and (b) the Bidi_Mirrored property value of that character is true.
 					if (isset(Ucdn::$mirror_pairs[$bidiData[$i]['uni']]) && $bidiData[$i]['type'] == Ucdn::BIDI_CLASS_R) {
